@@ -1,3 +1,25 @@
+# A simple bookmark app
+
+## Features
+* User authentication using emails, profiles, custom user( account app)
+* Social authentication via Twitter, Facebook, Google( account app)
+* Able to bookmark images from different sites( images app)
+* share images what you bookmark( images app)
+* shows number of likes and ability to like an image bookmarked by others( actions app)
+* updated count of views and ranking by number of likes and views( actions app and account)
+* follow people who are register on the account( account )
+* local SSH
+
+## Tools:
+* Python and Django
+* Bootstrap as CSS and Js
+* django signal denormalization in this case I use m2m_changed signal
+* Redis to handle the user likes count and user views count
+* Django debug toolbar which is very helpful debugging tool
+* poetry for dependency management
+
+
+
 # How to run a local Django development server over HTTPS with a trusted self-signed SSL certificate
 
 ## Tools used
@@ -55,3 +77,5 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.user.user_details',
 ]
 ```
+
+`Desclaimer: This is based on the Django 4 by example `

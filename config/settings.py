@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 from django.urls import reverse_lazy
-
+import environ
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['telephoto.com', 'localhost', '127.0.0.1', 'telephoto.loc']
 
+env = environ.Env()
 
 # Application definition
 
@@ -89,10 +90,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'telephoto',
-        'USER': 'brhaneashebr',
-        'PASSWORD': '',
+        'ENGINE': env('ENGINE'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
     }
 }
 
@@ -160,21 +161,21 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_JSONFIELD_ENABLED = True
-SOCIAL_AUTH_FACEBOOK_KEY = '1451026232093856' # Facebook App ID 
-SOCIAL_AUTH_FACEBOOK_SECRET = 'fa7905b9d1a599aad938a0bb1150c258' # Facebook App Secret
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, email, picture.type(large)'}
+SOCIAL_AUTH_JSONFIELD_ENABLED = env('SOCIAL_AUTH_JSONFIELD_ENABLED', default=False)
+SOCIAL_AUTH_FACEBOOK_KEY = env('SOCIAL_AUTH_FACEBOOK_KEY') # Facebook App ID 
+SOCIAL_AUTH_FACEBOOK_SECRET = env('SOCIAL_AUTH_FACEBOOK_SECRET') # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = env('SOCIAL_AUTH_FACEBOOK_SCOPE')
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = env('SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS')
 
 # Twitter keys
-SOCIAL_AUTH_TWITTER_KEY = 'K6AGk4kNiuuBIUd71FPfBMPhg' # Twitter 
-SOCIAL_AUTH_TWITTER_SECRET = 'hC2qbTt4pFyTLwfjfgSU92IXyoPwKsUldoEpjtMDCGdOmDCq7U'
-SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {'fields': 'name, screen_name, photo'}
-# TWITTER_CLIENT_ID='WS1kVV9GNUVoWThJOXlqRmpaeFY6MTpjaQ'
-# TWITTER_CLIENT_SECRET='tGPeyR43xHNvfhQ6Xy5Ua5p_cOGPqImvqpRoVORrGnJWbKBaMc'
+SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY') # Twitter 
+SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET')
+SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = env('SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS')
+# TWITTER_CLIENT_ID=
+# TWITTER_CLIENT_SECRET=
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '193773238179-5a80b14fvk39f0kj1jkrf2m1kkgqhc6i.apps.googleusercontent.com' # Twitter 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY') # Twitter 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 
 SOCIAL_AUTH_PIPELINE = [

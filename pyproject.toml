@@ -21,6 +21,7 @@ pyopenssl = "^23.0.0"
 requests = "^2.28.2"
 easy-thumbnails = "^2.8.5"
 redis = "^4.5.5"
+django-environ = "^0.10.0"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^3.8.1"
