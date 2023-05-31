@@ -1,0 +1,29 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load thumbnail %}
+{% load bootstrap5 %}
+{% load static %}
+{% block content %}
+<div class="row">
+{% for image in images %}
+    <div class="col-md-6 col-sm-5">
+        <div class="card">
+            <h5 class="card-title">{{image.title|truncatechars:10}}</h5>
+            {% thumbnail image.image 200x200 crop="smart" as im %}
+            <img src="{{ im.url }}" alt={{image.title}}>
+            <div class="card-body">
+                <p class="card-text">{{image.description}}</p>
+                <a href="{% url 'images:detail' image.id image.slug %}" class="btn btn-primary">image detail</a>
+                {% with likes=image.users_like.all.count %}
+                {% if likes > 0 %} 
+                    {{likes}}
+                {% else %}
+                    0
+                {% endif %}
+                    like{{ likes|pluralize}}
+                {% endwith%}
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}

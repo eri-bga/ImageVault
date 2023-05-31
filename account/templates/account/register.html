@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static bootstrap5 %}
+
+{% block title %}Create an account {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-5">
+    <div class="card align-items-center">
+        <div class="card-header">
+            <h4>Create an account<h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {% bootstrap_form user_form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary border border-2 radius-2">
+                        Create account
+                    </button>
+                    <a href="{% url "social:begin" "facebook" %}" class="btn btn-primary border border-2 radius-2 pr-10">
+                        Sign in with Facebook
+                    </a>
+                    {% endbuttons %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

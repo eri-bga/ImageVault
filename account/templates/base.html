@@ -1,0 +1,88 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% bootstrap_messages %}
+  <link href="{% static "account/css/base.css" %}" rel="stylesheet">
+  <link href="{% static "images/css/images.css" %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: #e3f2fd;">
+      <div class="container">
+        <a class="navbar-brand" href="#">Bookmarks</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!--This is where nav items are inserted  --> 
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+              </li>
+            {% if request.user.is_authenticated %}
+             
+              <li {% if section == 'dashboard' %}class='nav-item selected' else class='nav-item'{% endif %}>
+                <a href="{% url 'dashboard' %}" class="nav-link">My Dashboard</a>
+              </li>
+              <li {% if section == 'images' %}class='nav-item selected' else class='nav-item'{% endif %}>
+                <a href='{% url 'images:images_list'%}' class="nav-link">Images</a>
+              </li>
+              <li {% if section == 'people' %}class='nav-item selected' else class='nav-item' {% endif %}>
+                <a href='{% url "user_list" %}' class="nav-link">People</a>
+              </li>
+              <li class="nav-item">
+                <a href='{% url 'logout' %}' class="nav-link">Logout</a>
+              <li>
+            {% else %}
+              <li class="nav-item">
+                <span>
+                  <a href='{% url 'login' %}' class="nav-link">Login</a>
+                <span>
+              </li>
+              <li class="nav-item">
+                <span>
+                  <a href='{% url 'register' %}' class="nav-link">Register</a>
+                <span>
+              </li>
+            {% endif %}
+            
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    {% comment %} {% if messages %}
+      <ul class='messages'>
+        {% for message in messages %}
+          <li class='{{ message.tags }}'>
+            {{ message|safe }}
+            <a href='#' class='close'>X</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %} {% endcomment %}
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script>
+    const csrftoken = Cookies.get('csrftoken');
+    document.addEventListener("DOMContentLoaded", (event) => {
+      //Dom loaded
+      {% block domready %}
+      {% endblock %}
+    })
+  </script>
+</body>
+</html>

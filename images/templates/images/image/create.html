@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static bootstrap5 %}
+
+{% block title %}Bookmark an image {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-5">
+    <div class="card align-items-center">
+        <div class="card-header">
+            <h4>Bookmark an image<h4>
+            <img src="{{ request.GET.url }}" class='image-preview'>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {% bootstrap_form image_form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary border border-2 radius-2">
+                        Bookmark it!
+                    </button>
+                    {% endbuttons %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
