@@ -38,6 +38,12 @@ share/python-wheels/
 .Python build/ 
 MANIFEST
 
+# cirtficate
+*.crt
+cert.pem
+cert.key
+key.pem
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
