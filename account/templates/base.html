@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: #e3f2fd;">
       <div class="container">
-        <a class="navbar-brand" href="#">Bookmarks</a>
+        <a class="navbar-brand" href="{% url 'dashboard'%}">Bookmarks</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </nav>
-    {% comment %} {% if messages %}
+    {% if messages %}
       <ul class='messages'>
         {% for message in messages %}
           <li class='{{ message.tags }}'>
@@ -70,7 +70,7 @@
           </li>
         {% endfor %}
       </ul>
-    {% endif %} {% endcomment %}
+    {% endif %}
   <div id="content">
     {% block content %}
     {% endblock %}

@@ -13,12 +13,16 @@
 ## Tools:
 * Python and Django
 * Bootstrap as CSS and Js
-* django signal denormalization in this case I use m2m_changed signal
+* django signal demoralization in this case I use m2m_changed signal
 * Redis to handle the user likes count and user views count
 * Django debug toolbar which is very helpful debugging tool
 * poetry for dependency management
 
-
+## Todo
+* Add Testing
+* Add search functionality
+* Add messaging
+* improve UI
 
 # How to run a local Django development server over HTTPS with a trusted self-signed SSL certificate
 
