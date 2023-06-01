@@ -18,7 +18,7 @@ social-auth-app-django = "^5.0.0"
 django-extensions = {git = "https://github.com/django-extensions/django-extensions.git", rev = "25a41d8a3ecb24c009c5f4cac6010a091a3c91c8"}
 werkzeug = "^2.2.3"
 pyopenssl = "^23.0.0"
-requests = "^2.28.2"
+requests = "^2.31.0"
 easy-thumbnails = "^2.8.5"
 redis = "^4.5.5"
 django-environ = "^0.10.0"
